@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 # import aprifile
 
-istruzioni="Premi Esc per uscire"
+istruzioni = "Premi Esc per uscire"
 
 cap = cv2.VideoCapture(0)
 
@@ -20,8 +20,8 @@ cv2.normalize(roi_hist,roi_hist,0,255,cv2.NORM_MINMAX)
 
 term_crit = ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1 )
 
-nomefile="haarcascade_frontalface_default.xml" # Name of the xml file
-percorso="/home/matteo/opencv/opencv-2.4.9/data/haarcascades"+nomefile # Path
+nomefile = "haarcascade_frontalface_default.xml" # Name of the xml file
+percorso = "/home/matteo/opencv/opencv-2.4.9/data/haarcascades"+nomefile # Path
 
 # aprifile.Inserisci_nome_file(nomefile) # Verifica l'esistenza del file
 
