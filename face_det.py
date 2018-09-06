@@ -8,6 +8,7 @@ cap = cv2.VideoCapture(0) # Activate webcam
 
 # Read and catch frames;
 # ret -> a boolean variable where true/false value is stored, if it's true than the frame has get read correctly
+# frame -> where the frame is stored
 ret,frame = cap.read()
 
 # setup initial location of window
