@@ -1,14 +1,15 @@
+# Now using python 3.7
+# Last update: 22 September 2018 - 00:50
 import numpy as np
 import cv2
 # import aprifile
-
+print(cv2.__version__)
 istruzioni = "Premi Esc per uscire"
 
 cap = cv2.VideoCapture(0) # Activate webcam
 
 # Read and catch frames;
 # ret -> a boolean variable where true/false value is stored, if it's true than the frame has get read correctly
-# frame -> where the frame is stored
 ret,frame = cap.read()
 
 # setup initial location of window
@@ -32,7 +33,7 @@ cv2.normalize(roi_hist,roi_hist,0,255,cv2.NORM_MINMAX)
 term_crit = ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1 )
 
 nomefile = "haarcascade_frontalface_default.xml" # Name of the xml file
-percorso = "/home/matteo/opencv/opencv-2.4.9/data/haarcascades"+nomefile # Path
+percorso = "/home/matteo/opencv-3.4.3/data/haarcascades"+nomefile # Path
 
 # aprifile.Inserisci_nome_file(nomefile) # Checks if file exists
 
@@ -41,7 +42,8 @@ print(istruzioni)
 while(1):
     """
     Calculate the histogram projection
-    For every position (x,y) store the values on selected channels and find the corresponding binary histogram
+    For every position (x,y) store the values on selected channels 
+    and find the corresponding binary histogram
     """
     ret ,frame = cap.read()
     if ret == True:
@@ -50,7 +52,7 @@ while(1):
         ret, track_window = cv2.meanShift(dst, track_window, term_crit)
 
         fc = cv2.CascadeClassifier(percorso) # Load the XML file
-        
+        fc.load('/home/matteo/opencv-3.4.3/data/haarcascades/haarcascade_frontalface_default.xml')
         # f = fc.detectMultiScale(frame, 1.3, 5, (30,30), cv2.cv.CV_HAAR_SCALE_IMAGE)
         f = fc.detectMultiScale(frame, 1.3, 5) # Do the detection operations
 
@@ -72,4 +74,5 @@ while(1):
         break
 
 cv2.destroyAllWindows() # Close all the windows
-cap.release() # Exit 
+cap.release() # Exit
+raise SystemExit
